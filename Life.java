@@ -59,12 +59,22 @@ public class Life implements ILife {
 
     for(int y = 0; y < habitat.length; y++){
       for(int x = 0; x < habitat[0].length; x++){
-        if(!this.isAlive(x, y) && numberOfNeighbors(x,y) == 3) nextGen.setAlive(x, y);
-        //else if(this.isAlive(x, y) && 2 <= numberOfNeighbors(x,y) <= 3) nextGen.setAlive(x, y);
+        if(birthCondition(x, y)) nextGen.setAlive(x, y);
+        else if(survivalCondition(x, y)) nextGen.setAlive(x, y);
         else nextGen.setDead(x,y);
       }
     }
     return(nextGen);
+  }
+
+  public boolean birthCondition(int x, int y){
+    return(!this.isAlive(x, y) && numberOfNeighbors(x,y) == 3);
+  }
+
+  public boolean survivalCondition(int x, int y){
+   return(this.isAlive(x, y)
+          && numberOfNeighbors(x,y) >= 2
+          && numberOfNeighbors(x,y) <= 3);
   }
 
   public int numberOfNeighbors(int x, int y){
