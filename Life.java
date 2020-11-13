@@ -1,7 +1,7 @@
 public class Life implements ILife {
   
   //public boolean[][] habitat;
-  public char[][] habitat;
+  public char[][] habitat = new char[5][5];
 
   public static void main(String[] args) {
     Life l = new Life(new String[] {  "     ",
@@ -29,16 +29,9 @@ public class Life implements ILife {
 
   @Override
   public void nukeAll() {
-    if(habitat.length > 0) setNewHabitat(habitat.length, habitat[0].length);
-    else setNewHabitat(10, 10);
-  }
-
-  public void setNewHabitat(int width, int height){
-    for(int y = 0; y < height; y++){
-      for(int x = 0; x < width; x++){
+    for(int y = 0; y < habitat.length; y++)
+      for(int x = 0; x < habitat[0].length; x++)
         setDead(x,y);
-      }
-    }
   }
 
   @Override
@@ -58,7 +51,7 @@ public class Life implements ILife {
   }
 
   @Override
-  public Life nextGeneration() {
+  public ILife nextGeneration() {
     // TODO Auto-generated method stub
     return null;
   }
