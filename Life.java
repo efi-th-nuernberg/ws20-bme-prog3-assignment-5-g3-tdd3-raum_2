@@ -52,7 +52,23 @@ public class Life implements ILife {
 
   @Override
   public ILife nextGeneration() {
+    Life nextGen = new Life();
+    nextGen.setAlive(1,1);
     // TODO Auto-generated method stub
-    return null;
+
+    return nextGen;
+  }
+
+  public int numberOfNeighbors(int x, int y){
+    int neighbors =0;
+    for(int i = y-1; i <= y+1; i++){
+      if(i<0 || i >= habitat.length) break;
+      for(int j = x-1; j<= x+1; j++){
+        if(j<0 || j >= habitat[0].length) break;
+        if(habitat[j][i]=='*') neighbors++;
+      }
+    }
+    if(habitat[x][y]=='*') neighbors--;
+    return(neighbors);
   }
 }
