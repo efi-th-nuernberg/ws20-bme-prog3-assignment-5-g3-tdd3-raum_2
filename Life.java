@@ -1,6 +1,5 @@
 public class Life implements ILife {
   
-  //public boolean[][] habitat;
   public char[][] habitat = new char[5][5];
 
   public static void main(String[] args) {
@@ -14,15 +13,13 @@ public class Life implements ILife {
 
   public Life() {
     nukeAll();
-    
   }
 
   public Life(String[] setup) {
     this();
     for (int y = 0; y < setup.length; y++)
       for (int x = 0; x < setup[y].length(); x++)
-        if (setup[y].charAt(x) != ' ')
-          setAlive(x, y);
+        if (setup[y].charAt(x) != ' ') setAlive(x, y);
         else setDead(x,y);
   }
 
@@ -53,10 +50,6 @@ public class Life implements ILife {
   @Override
   public ILife nextGeneration() {
     Life nextGen = new Life();
-
-    //nextGen.setAlive(1,1);
-    // TODO Auto-generated method stub
-
     for(int y = 0; y < habitat.length; y++){
       for(int x = 0; x < habitat[0].length; x++){
         if(birthCondition(x, y)) nextGen.setAlive(x, y);
@@ -72,7 +65,7 @@ public class Life implements ILife {
   }
 
   public boolean survivalCondition(int x, int y){
-   return(this.isAlive(x, y)
+    return(this.isAlive(x, y)
           && numberOfNeighbors(x,y) >= 2
           && numberOfNeighbors(x,y) <= 3);
   }
